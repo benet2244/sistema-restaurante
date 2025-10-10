@@ -1,0 +1,103 @@
+/* Estilos de la página de inicio */
+.hero-section {
+    position: relative;
+    height: 450px; /* Un poco más de altura */
+    background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Un poco más oscuro */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 35px;
+}
+
+.reserve-btn {
+    padding: 15px 35px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.reserve-btn:hover {
+    background-color: #ffffff;
+    color: var(--primary-color);
+}
+
+.features-section {
+    padding: 60px 30px;
+    text-align: center;
+    background-color: var(--main-bg-color);
+}
+
+.features-section h3 {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    color: var(--text-color-dark);
+    font-weight: 700;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna */
+    align-items: center; /* Centrar items */
+    gap: 40px; /* Espacio entre items */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    /* Se eliminan los estilos de tarjeta (fondo, borde, sombra) */
+    max-width: 400px; /* Ancho máximo para el texto */
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.feature-item h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-color-dark);
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}

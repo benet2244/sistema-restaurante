@@ -1,0 +1,115 @@
+<!-- Modal de Creación/Edición de Reserva -->
+<div *ngIf="showEditModal()" class="modal-backdrop">
+  <div class="modal-content edit-modal">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        {{ isNewReservation ? 'Crear Nueva Reserva' : 'Editar Reserva #' + reservaForm.id }}
+      </h3>
+    </div>
+
+    <div class="modal-body">
+      <form (ngSubmit)="saveReservation()">
+        
+        <!-- Datos del Cliente -->
+        <div class="form-group">
+          <label for="nombre">Nombre Cliente</label>
+          <input id="nombre" type="text" [(ngModel)]="reservaForm.nombre_cliente" name="nombre_cliente" required class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido Cliente</label>
+          <input id="apellido" type="text" [(ngModel)]="reservaForm.apellido_cliente" name="apellido_cliente" required class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Teléfono</label>
+          <input id="phone" type="tel" [(ngModel)]="reservaForm.phone" name="phone" required class="form-input" placeholder="Ej: +50212345678">
+        </div>
+
+        <!-- Fecha y Personas -->
+        <div class="form-group grid-2">
+          <div class="sub-group">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date" [(ngModel)]="reservaForm.fecha" name="fecha" required class="form-input">
+          </div>
+          <div class="sub-group">
+            <label for="personas">Personas</label>
+            <input id="personas" type="number" [(ngModel)]="reservaForm.personas" name="personas" required min="1" class="form-input">
+          </div>
+        </div>
+
+        <!-- Horario y Mesa -->
+        <div class="form-group grid-2">
+          <div class="sub-group">
+            <label for="horario">Horario</label>
+            <select id="horario" [(ngModel)]="reservaForm.horario" name="horario" required class="form-input">
+              <option *ngFor="let h of horariosDisponibles" [value]="h.hora">{{ h.hora }}</option>
+            </select>
+          </div>
+          <div class="sub-group">
+            <label for="mesa">Mesa</label>
+            <select id="mesa" [(ngModel)]="reservaForm.mesa" name="mesa" required class="form-input">
+              <option *ngFor="let m of mesasDisponibles" [value]="m.label">{{ m.label }} - {{ m.zone }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Estado de la Reserva -->
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select id="estado" [(ngModel)]="reservaForm.estado" name="estado" class="form-input">
+            <option value="pending">Pendiente</option>
+            <option value="confirmed">Confirmado</option>
+            <option value="cancelled">Cancelado</option>
+          </select>
+        </div>
+
+        <!-- Botones -->
+        <div class="modal-footer mt-4">
+          <button type="button" class="btn-secondary" (click)="closeEditModal()">Cancelar</button>
+          <button type="submit" class="btn-primary">
+            {{ isNewReservation ? 'Crear Reserva' : 'Guardar Cambios' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="reservas-container">
+  <h1 class="page-title">Gestión de Reservas</h1>
+  <!-- Sección de Filtros -->
+  <div class="section-box">
+    <h2 class="section-header">Filtros y Acciones</h2>
+    <div class="reservations-filters">
+      <div class="filter-group">
+        <label for="filter-date">Fecha</label>
+        <input id="filter-date" type="date" class="filter-input" [(ngModel)]="filterDate" (change)="applyFilters()" >
+      </div>
+      <div class="filter-group">
+        <label for="filter-status">Estado</label>
+        <select id="filter-status" class="filter-input" [(ngModel)]="filterStatus" (change)="applyFilters()" >
+          <option value="">Todos</option>
+          <option value="confirmed">Confirmado</option>
+          <option value="pending">Pendiente</option>
+          <option value="cancelled">Cancelado</option>
+        </select>
+      </div>
+      <button class="btn-secondary" (click)="resetFilters()">Limpiar Filtros</button>
+      <button class="btn-primary add-reservation-btn" (click)="onEdit(null)">Nueva Reserva</button>
+    </div>
+  </div>
+  <!-- Sección de la Tabla de Reservas -->
+  <div class="section-box reservations-table-full">
+    <h2 class="section-header">Listado Completo de Reservas</h2>
+    <!-- Mensaje de Carga -->
+    <div *ngIf="isLoading" class="loading-message">
+      Cargando reservas, por favor espere...
+    </div>
+    <!-- Mensaje de Tabla vacía (después de cargar y/o aplicar filtros) -->
+    <div *ngIf="!isLoading && reservasFiltradas().length === 0" class="empty-message">
+      No se encontraron reservas que coincidan con los filtros aplicados.
+    </div>
+    <div *ngIf="!isLoading && reservasFiltradas().length > 0" class="overflow-x-auto">
+      <table class="table">
+        <thead class="table-head">
+          <tr class="head-row">

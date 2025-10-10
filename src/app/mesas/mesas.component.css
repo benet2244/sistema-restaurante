@@ -1,0 +1,141 @@
+/* Estilos para la página de Gestión de Mesas */
+
+.page-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.section-box {
+    background-color: #fff;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.table-controls {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-controls p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.table-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.table-card {
+    background-color: #fff;
+    border: 1px solid #D6D6D6;
+    border-radius: 8px;
+    overflow: hidden; /* Para que el borde del header se ajuste */
+    transition: box-shadow 0.3s ease;
+}
+
+.table-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.table-card-header .table-name {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.status-tag {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: black;
+}
+
+/* Colores de borde y tags para cada estado */
+.table-card.available {
+    border-left: 5px solid #2ECC71;
+}
+.status-tag.available { background-color: #2ECC71; }
+
+.table-card.occupied {
+    border-left: 5px solid #E74C3C;
+}
+.status-tag.occupied { background-color: #E74C3C; }
+
+.table-card.reserved {
+    border-left: 5px solid #F39C12;
+}
+.status-tag.reserved { background-color: #F39C12; }
+
+.table-card.maintenance {
+    border-left: 5px solid #95A5A6;
+}
+.status-tag.maintenance { background-color: #95A5A6; }
+
+
+.table-card-body {
+    padding: 15px;
+    color: #555;
+}
+
+.table-card-body p {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+}
+
+.table-card-actions {
+    background-color: #F8F9F9;
+    padding: 10px 15px;
+    text-align: right;
+    border-top: 1px solid #EAEAEA;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid #BDBDBD;
+    border-radius: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.action-btn.edit { color: #2980B9; border-color: #A9CCE3; }
+.action-btn.edit:hover { background-color: #A9CCE3; color: white; }
+
+.action-btn.status { color: #8E44AD; border-color: #D7BDE2; }
+.action-btn.status:hover { background-color: #D7BDE2; color: white; }

@@ -1,0 +1,65 @@
+<h1 class="page-title">Reportes y Estadísticas</h1>
+
+<div class="section-box report-controls">
+  <div class="control-group">
+    <label for="report-type">Tipo de Reporte:</label>
+    <select id="report-type">
+      <option value="reservations_per_day">Reservas por Día</option>
+      <option value="table_occupancy">Ocupación de Mesas</option>
+      <option value="frequent_clients">Clientes Frecuentes</option>
+      <option value="cancellation_rate">Tasa de Cancelación</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="start-date">Fecha de Inicio:</label>
+    <input type="date" id="start-date">
+  </div>
+
+  <div class="control-group">
+    <label for="end-date">Fecha de Fin:</label>
+    <input type="date" id="end-date">
+  </div>
+
+  <button class="btn-primary generate-report-btn">Generar Reporte</button>
+</div>
+
+<div class="section-box report-display">
+  <h2 class="section-header">Visualización del Reporte</h2>
+  <div class="report-content">
+    
+    <!-- Placeholder para un gráfico -->
+    <div class="chart-placeholder">
+      <p>Aquí se mostrará el gráfico del reporte seleccionado.</p>
+      <p>(Imagina un gráfico de barras o líneas aquí)</p>
+    </div>
+
+    <!-- Placeholder para una tabla de resumen -->
+    <div class="summary-table">
+      <h4>Datos de Resumen</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total de Reservas en el Período</td>
+            <td>152</td>
+          </tr>
+          <tr>
+            <td>Día con Más Actividad</td>
+            <td>Sábado</td>
+          </tr>
+          <tr>
+            <td>Tasa de Ocupación Promedio</td>
+            <td>78%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<h1 class="page-title">Configuración del Sistema</h1>
+
+<div class="settings-container">
+
+  <!-- Sección 1: Configuración del Restaurante -->
+  <fieldset class="section-box">
+    <legend class="section-header">Información del Restaurante</legend>
+    <div class="form-grid">
+      <div class="form-group full-width">
+        <label for="restaurant-name">Nombre del Restaurante</label>
+        <input type="text" id="restaurant-name" value="El Buen Sabor">
+      </div>
+      <div class="form-group">
+        <label for="restaurant-address">Dirección</label>
+        <input type="text" id="restaurant-address" value="Calle Falsa, 123">
+      </div>
+      <div class="form-group">
+        <label for="restaurant-phone">Teléfono</label>
+        <input type="tel" id="restaurant-phone" value="+34 912 345 678">
+      </div>
+      <div class="form-group full-width">
+        <label for="opening-hours">Horarios de Apertura</label>
+        <textarea id="opening-hours" rows="3">Lunes a Viernes: 13:00 - 23:00
+Sábados y Domingos: 12:00 - 00:00</textarea>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Sección 2: Configuración de Reservas -->
+  <fieldset class="section-box">
+    <legend class="section-header">Gestión de Reservas</legend>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="min-party-size">Mínimo de Personas por Reserva</label>
+        <input type="number" id="min-party-size" value="1">
+      </div>
+      <div class="form-group">
+        <label for="max-party-size">Máximo de Personas por Reserva</label>
+        <input type="number" id="max-party-size" value="8">
+      </div>
+      <div class="form-group full-width">
+        <label for="booking-policy">Política de Reserva (ej. tiempo de antelación)</label>
+        <input type="text" id="booking-policy" value="Las reservas deben hacerse con al menos 2 horas de antelación.">
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Botón de Guardar -->
+  <div class="save-button-container">
+    <button class="btn-primary save-settings-btn">Guardar Cambios</button>
+  </div>
+
+</div>

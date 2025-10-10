@@ -1,0 +1,50 @@
+<!-- Encabezado de la página -->
+<header class="header">
+    <div class="header-content">
+        <h1 class="logo">Reserva de Restaurante</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a [routerLink]="['/inicio']" class="nav-item">Inicio</a></li>
+                <li><a [routerLink]="['/login']" class="nav-item">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Sección Principal con Imagen de Fondo -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2 class="hero-title">BIENVENIDO A RESERVA DE RESTAURANTE</h2>
+            <p class="hero-subtitle">El sistema perfecto para gestionar tus reservas de manera eficiente.</p>
+            <button class="reserve-btn" [routerLink]="['/login']">Reserva Ahora</button>
+        </div>
+    </section>
+
+    <!-- Sección de Características -->
+    <section class="features-section">
+        <h3>¿Por qué reservar con nosotros?</h3>
+        <div class="feature-list">
+            <div class="feature-item">
+                <img src="https://icongr.am/clarity/calendar.svg?size=60&color=3498db" alt="Reserva Fácil Icon" class="feature-icon">
+                <h4>Reserva Fácil</h4>
+                <p>Reserva tu mesa en pocos segundos desde cualquier dispositivo.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://icongr.am/clarity/refresh.svg?size=60&color=3498db" alt="Modificación Sencilla Icon" class="feature-icon">
+                <h4>Modificación Sencilla</h4>
+                <p>Cambia o cancela tu reserva fácilmente cuando lo necesites.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://icongr.am/clarity/bell.svg?size=60&color=3498db" alt="Recordatorios Icon" class="feature-icon">
+                <h4>Recordatorios</h4>
+                <p>Recibe notificaciones por email o SMS para no olvidar tu reserva.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer de la página -->
+    <footer class="footer">
+        © 2025 Reserva de Restaurante. Todos los derechos reservados.
+    </footer>
+</main>

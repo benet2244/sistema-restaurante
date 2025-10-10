@@ -1,0 +1,70 @@
+/* Estilos globales para la aplicación */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Variables de color */
+:root {
+    --primary-color: #2c3e50; /* Azul oscuro/gris para header y footer */
+    --secondary-color: #3498db; /* Azul para botones y enlaces */
+    --text-color-light: #ecf0f1; /* Texto claro para fondos oscuros */
+    --text-color-dark: #2c3e50; /* Texto oscuro para fondos claros */
+    --main-bg-color: #ffffff; /* Fondo principal blanco */
+    --footer-bg-color: #2c3e50; /* Fondo del footer */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--main-bg-color);
+    color: var(--text-color-dark);
+}
+
+/* Estilos del Header */
+.header {
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    color: var(--text-color-light);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--secondary-color);
+}
+
+/* Estilos del Footer */
+.footer {
+    background-color: var(--footer-bg-color);
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

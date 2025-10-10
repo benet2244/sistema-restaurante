@@ -1,0 +1,82 @@
+<h1 class="page-title">Panel de Administración</h1>
+
+<div class="stats-cards">
+  <div class="stat-card dark-blue">
+    <h3>RESERVAS DE HOY</h3>
+    <p>{{ stats?.reservas_hoy ?? '...' }}</p>
+  </div>
+  <div class="stat-card green">
+    <h3>MESAS DISPONIBLES</h3>
+    <p>
+      {{ stats?.mesas_disponibles ?? '...' }} /
+      {{ stats?.mesas_totales ?? '...' }}
+    </p>
+  </div>
+  <div class="stat-card orange">
+    <h3>RESERVAS PENDIENTES</h3>
+    <p>{{ stats?.reservas_pendientes ?? '...' }}</p>
+  </div>
+  <div class="stat-card light-blue">
+    <h3>OCUPACIÓN</h3>
+    <p>{{ stats?.ocupacion_porcentaje ?? '...' }}%</p>
+  </div>
+</div>
+
+<div class="admin-dashboard-columns">
+  <div class="section-box reservations-table">
+    <h2 class="section-header">Gestión de Reservas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Cliente</th>
+          <th>Mesa</th>
+          <th>Personas</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reserva of reservasDelDia">
+          <td>{{ reserva.hora_reserva | slice:0:5 }}</td>
+          <td>{{ reserva.nombre_cliente }} {{ reserva.apellido_cliente }}</td>
+          <td>{{ reserva.mesa }}</td>
+          <td>{{ reserva.personas }}</td>
+          <td>
+            <span class="status-tag" [ngClass]="getStatusClass(reserva.estado)">
+              {{ reserva.estado }}
+            </span>
+          </td>
+          <td class="actions">
+            <button class="action-btn edit">Editar</button>
+            <button class="action-btn cancel">Cancelar</button>
+          </td>
+        </tr>
+        <tr *ngIf="reservasDelDia.length === 0">
+          <td colspan="6" style="text-align: center; padding: 20px; color: #777;">
+            Cargando reservas o no hay reservas para hoy.
+          </td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="right-column">
+    <div class="section-box table-status-container">
+    <h2 class="section-header">Estado de Mesas</h2>
+      
+    <div class="table-status-item" *ngFor="let mesa of estadoDeMesas">
+    <p> {{ mesa.label }}<br>
+    <small>{{ mesa.capacity }} personas - {{ mesa.zone }}</small>
+    </p>
+    <span class="status-tag" [ngClass]="mesa.table_status">
+    {{ getStatusDisplay(mesa.table_status) }}
+    </span>
+    </div>
+
+    <div class="table-status-item" *ngIf="estadoDeMesas.length === 0">
+    <p style="margin: 0;">Cargando estado de mesas...</p>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="admin-container">
+  <aside class="sidebar">
+    <div class="logo">
+      Reserva de Restaurante
+    </div>
+    <nav class="main-nav">
+      <a [routerLink]="['./dashboard']" routerLinkActive="active" class="nav-item">Dashboard</a>
+      <a [routerLink]="['./reservas']" routerLinkActive="active" class="nav-item">Reservas</a>
+      <a [routerLink]="['./mesas']" routerLinkActive="active" class="nav-item">Mesas</a>
+      <a [routerLink]="['./configuracion']" routerLinkActive="active" class="nav-item">Configuración</a>
+    </nav>
+    <button class="logout-btn-admin" (click)="logout()">Cerrar sesion</button>
+  </aside>
+
+  <main class="main-content-admin">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+<footer class="footer">
+    © 2025 Reserva de Restaurante. Todos los derechos reservados.
+</footer>

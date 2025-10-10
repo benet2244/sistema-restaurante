@@ -1,0 +1,106 @@
+/* Estilos para la página de Reportes y Estadísticas */
+
+.page-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.section-box {
+    background-color: #fff;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.report-controls {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Para que se ajuste en pantallas pequeñas */
+    gap: 20px;
+    align-items: flex-end; /* Alinea los elementos en la parte inferior */
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.control-group select,
+.control-group input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 200px; /* Ancho mínimo para los controles */
+}
+
+.btn-primary.generate-report-btn {
+    margin-left: auto; /* Empuja el botón a la derecha */
+    align-self: flex-end;
+}
+
+.section-header {
+    background-color: #34495E;
+    color: white;
+    padding: 12px 15px;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.report-display .report-content {
+    padding: 25px;
+}
+
+.chart-placeholder {
+    background-color: #F8F9F9;
+    border: 2px dashed #BDC3C7;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #7F8C8D;
+}
+
+.chart-placeholder p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.summary-table h4 {
+    font-size: 1.2rem;
+    color: #34495E;
+    margin-bottom: 15px;
+}
+
+.summary-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table th,
+.summary-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.summary-table th {
+    background-color: #F8F9F9;
+    font-weight: 600;
+}
+
+.summary-table td {
+    font-size: 0.95rem;
+}

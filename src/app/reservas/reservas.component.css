@@ -1,0 +1,144 @@
+/* Estilos para la página de Gestión de Reservas */
+
+.reservas-container {
+    padding: 25px; /* Añadido para dar espacio alrededor del contenido */
+    background-color: #f4f4f4; /* Fondo claro para la página */
+    min-height: 100vh;
+}
+
+.page-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.section-box {
+    background-color: #fff;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.section-header {
+    background-color: #34495E;
+    color: white;
+    padding: 12px 15px;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.reservations-filters {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.filter-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.add-reservation-btn {
+    margin-left: auto; /* Empuja el botón a la derecha */
+}
+
+.reservations-table-full table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservations-table-full th,
+.reservations-table-full td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.reservations-table-full th {
+    background-color: #F8F9F9;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.reservations-table-full td {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ⚠️ Asegúrate de que el colspan en el HTML sea 7 para que se centre el mensaje de "No hay reservas" */
+.reservations-table-full tbody tr:last-child td {
+    border-bottom: none;
+}
+.reservations-table-full tbody tr:has(td[colspan]) td {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
+
+.status-tag {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.status-tag.confirmed { background-color: #27AE60; }
+.status-tag.pending { background-color: #F39C12; }
+.status-tag.cancelled { background-color: #E74C3C; }
+
+.actions .action-btn {
+    background: transparent;
+    border: 1px solid #BDBDBD;
+    border-radius: 15px;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.actions .action-btn.view { color: #3498DB; border-color: #A9CCE3; }
+.actions .action-btn.view:hover { background-color: #A9CCE3; color: white; }
+
+.actions .action-btn.edit { color: #2980B9; border-color: #A9CCE3; }
+.actions .action-btn.edit:hover { background-color: #A9CCE3; color: white; }
+
+.actions .action-btn.cancel { color: #C0392B; border-color: #F5B7B1; }
+.actions .action-btn.cancel:hover { background-color: #F5B7B1; color: white; }

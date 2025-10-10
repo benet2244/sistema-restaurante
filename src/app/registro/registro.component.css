@@ -1,0 +1,88 @@
+/* Estilos para la página de Registro, basados en el login */
+.registro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    min-height: calc(100vh - 160px);
+    background-color: var(--main-bg-color);
+}
+
+.registro-box {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Un poco más ancho para el nuevo campo */
+    text-align: center;
+}
+
+.registro-box .title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: var(--text-color-light);
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color-light);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #55687d;
+    background-color: #3a4c5e;
+    color: var(--text-color-light);
+    font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: #a0b3c6;
+}
+
+.registro-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.registro-btn:hover {
+    opacity: 0.9;
+}
+
+/* Estilos para el enlace de inicio de sesión */
+.login-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+.login-link a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-decoration 0.3s ease;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

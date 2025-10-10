@@ -1,0 +1,5 @@
+el archivo que dice gloables.css es el css que va fuera de los componentes, en el css principal
+
+
+
+cualquier dura o algo que haga falta me podes decir 

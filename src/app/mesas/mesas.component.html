@@ -1,0 +1,89 @@
+<h1 class="page-title">Gestión de Mesas</h1>
+
+<div class="management-container">
+  <!-- Botón para mostrar/ocultar el formulario -->
+  <div class="header-actions">
+    <button class="btn-primary" (click)="toggleFormulario()">
+      {{ mostrarFormulario ? 'Cancelar' : 'Añadir Nueva Mesa' }}
+    </button>
+  </div>
+
+  <!-- Formulario embebido -->
+  <div *ngIf="mostrarFormulario" class="form-section">
+    <h2>Agregar Nueva Mesa</h2>
+    <form (ngSubmit)="guardarMesa()" #mesaForm="ngForm">
+      <label>
+        Nombre:
+        <input type="text" name="label" [(ngModel)]="nuevaMesa.label" required class="form-input" />
+      </label>
+
+      <label>
+        Zona:
+        <input type="text" name="zone" [(ngModel)]="nuevaMesa.zone" required class="form-input" />
+      </label>
+
+      <label>
+        Capacidad:
+        <input type="number" name="capacity" [(ngModel)]="nuevaMesa.capacity" required min="1" class="form-input" />
+      </label>
+
+      <label>
+        Estado:
+        <select name="table_status" [(ngModel)]="nuevaMesa.table_status" required class="form-input">
+          <option value="available">Disponible</option>
+          <option value="occupied">Ocupada</option>
+          <option value="reserved">Reservada</option>
+          <option value="maintenance">Mantenimiento</option>
+        </select>
+      </label>
+
+      <label>
+        Notas:
+        <textarea name="notes" [(ngModel)]="nuevaMesa.notes" class="form-input"></textarea>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla de Mesas Existentes -->
+  <div class="list-section">
+    <h3 class="section-header">Listado de Mesas Actuales</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Zona</th>
+          <th>Capacidad</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="listaMesas.length > 0; else noMesas">
+          <tr *ngFor="let mesa of listaMesas">
+            <td>{{ mesa.label }}</td>
+            <td>{{ mesa.zone }}</td>
+            <td>{{ mesa.capacity }} personas</td>
+            <td>
+              <span class="status-tag" [ngClass]="'status-' + mesa.table_status">
+                {{ mesa.table_status | titlecase }}
+              </span>
+            </td>
+            <td class="actions">
+              <button class="action-btn edit" (click)="editarMesa(mesa)">Editar</button>
+              <button class="action-btn cancel" (click)="eliminarMesa(mesa.id)">Eliminar</button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noMesas>
+          <tr>
+            <td colspan="5" class="no-data-message">No hay mesas configuradas. Añade una para empezar.</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
