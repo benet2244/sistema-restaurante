@@ -9,11 +9,13 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { ReservasComponent } from './reservas/reservas.component';
 import { RegistroComponent } from './registro/registro.component';
+import { MenuComponent } from './menu/menu.component'; // Importar el nuevo componente
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
+    { path: 'menu', component: MenuComponent }, // Añadir la nueva ruta
     { 
         path: 'cliente', 
         component: ClienteComponent

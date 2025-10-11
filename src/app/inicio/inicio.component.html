@@ -1,10 +1,11 @@
 <!-- Encabezado de la página -->
 <header class="header">
     <div class="header-content">
-        <h1 class="logo">Reserva de Restaurante</h1>
+        <h1 class="logo">ELBUENGUSTO</h1>
         <nav class="main-nav">
             <ul>
                 <li><a [routerLink]="['/inicio']" class="nav-item">Inicio</a></li>
+                <li><a [routerLink]="['/menu']" class="nav-item">Menú</a></li>
                 <li><a [routerLink]="['/login']" class="nav-item">Iniciar Sesión</a></li>
             </ul>
         </nav>
@@ -12,33 +13,43 @@
 </header>
 
 <main>
+    <!-- ... (código del carrusel) ... -->
+
     <!-- Sección Principal con Imagen de Fondo -->
     <section class="hero-section">
         <div class="hero-content">
-            <h2 class="hero-title">BIENVENIDO A RESERVA DE RESTAURANTE</h2>
-            <p class="hero-subtitle">El sistema perfecto para gestionar tus reservas de manera eficiente.</p>
-            <button class="reserve-btn" [routerLink]="['/login']">Reserva Ahora</button>
+            <h2 class="hero-title">BIENVENIDO A ELBUENGUSTO</h2>
+            <p class="hero-subtitle">Reserva tu Mesa.</p>
+            <div class="search-container">
+                <input type="date" [(ngModel)]="searchDate" placeholder="Fecha">
+                <input type="time" [(ngModel)]="searchTime" placeholder="Hora">
+                <input type="number" [(ngModel)]="searchPeople" placeholder="Personas">
+                <button class="search-btn" (click)="searchTables()">Buscar Mesa</button>
+            </div>
+            <div class="hero-buttons">
+                <button class="reserve-btn" [routerLink]="['/login']">Reserva Ahora</button>
+            </div>
         </div>
     </section>
 
-    <!-- Sección de Características -->
+    <!-- Sección de Características Mejorada -->
     <section class="features-section">
-        <h3>¿Por qué reservar con nosotros?</h3>
+        <h3>¿Por qué elegirnos?</h3>
         <div class="feature-list">
             <div class="feature-item">
-                <img src="https://icongr.am/clarity/calendar.svg?size=60&color=3498db" alt="Reserva Fácil Icon" class="feature-icon">
-                <h4>Reserva Fácil</h4>
-                <p>Reserva tu mesa en pocos segundos desde cualquier dispositivo.</p>
+                <img src="https://icongr.am/material/silverware-fork-knife.svg?size=60&color=c0392b" alt="Icono de Carne" class="feature-icon" width="60" height="60">
+                <h4>La Mejor Carne del País</h4>
+                <p>Carne importada de la mejor ternera, madurada a la perfección para un sabor inigualable.</p>
             </div>
             <div class="feature-item">
-                <img src="https://icongr.am/clarity/refresh.svg?size=60&color=3498db" alt="Modificación Sencilla Icon" class="feature-icon">
-                <h4>Modificación Sencilla</h4>
-                <p>Cambia o cancela tu reserva fácilmente cuando lo necesites.</p>
+                <img src="https://icongr.am/material/glass-cocktail.svg?size=60&color=27ae60" alt="Icono de Ambiente" class="feature-icon" width="60" height="60">
+                <h4>Un Ambiente Inolvidable</h4>
+                <p>Disfruta de una atmósfera acogedora y elegante, diseñada para crear momentos especiales.</p>
             </div>
             <div class="feature-item">
-                <img src="https://icongr.am/clarity/bell.svg?size=60&color=3498db" alt="Recordatorios Icon" class="feature-icon">
-                <h4>Recordatorios</h4>
-                <p>Recibe notificaciones por email o SMS para no olvidar tu reserva.</p>
+                <img src="https://icongr.am/material/cake-variant.svg?size=60&color=d35400" alt="Icono de Postre" class="feature-icon" width="60" height="60">
+                <h4>Repostería Artesanal</h4>
+                <p>Termina tu velada con un postre que enamora, preparado al momento por nuestros maestros pasteleros.</p>
             </div>
         </div>
     </section>

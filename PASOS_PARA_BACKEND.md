@@ -111,20 +111,3 @@ export class ReservasComponent implements OnInit {
   }
 }
 ```
-
-## 3. Flujo de Datos Interconectado (Tu Ejemplo)
-
-Con esta arquitectura, el flujo de datos que mencionaste funciona de la siguiente manera:
-
-1.  **El Cliente Crea una Reserva:**
-    - El `ClienteComponent` captura los datos del formulario (fecha, hora, personas).
-    - Llama a `this.apiService.crearReserva(datosDelFormulario)`.
-    - El servicio envía una petición `POST` al backend en `.../reservas`.
-
-2.  **El Administrador ve la Nueva Reserva:**
-    - El `ReservasComponent` del panel de administrador se carga.
-    - Llama a `this.apiService.obtenerReservas()`.
-    - El servicio pide los datos al backend con un `GET` en `.../reservas`.
-    - El backend consulta su base de datos y devuelve **toda la lista de reservas**, que ya incluye la que el cliente acaba de crear.
-
-Lo mismo ocurre con el estado de las mesas. Si el administrador marca una mesa como "En Mantenimiento", esa información se envía al backend. Cuando el cliente cargue su panel, su vista pedirá el estado de las mesas al backend y mostrará la información actualizada. 

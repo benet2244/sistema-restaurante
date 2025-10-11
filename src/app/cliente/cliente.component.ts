@@ -79,11 +79,17 @@ export class ClienteComponent implements OnInit {
   // FUNCIÓN CLAVE: Carga inicial de datos, incluyendo las reservas existentes
   cargarDatosIniciales(): void {
     const clienteId = this.authService.getUserId();
+    
+    /*
+    // ========================
+    //  BLOQUEO TEMPORALMENTE DESACTIVADO PARA DESARROLLO
+    // ========================
     if (!clienteId) {
       console.error('No se pudo obtener el ID del cliente. Redirigiendo a login');
       this.router.navigate(['/login']);
       return;
     }
+    */
     
     // 1. Carga las reservas del cliente
     (this.apiService as any).obtenerReservasPorCliente(clienteId).subscribe({

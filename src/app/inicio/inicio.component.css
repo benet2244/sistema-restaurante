@@ -1,103 +1,196 @@
-/* Estilos de la página de inicio */
-.hero-section {
+/* Estilos para la sección del carrusel */
+.carousel-section {
+    width: 100%;
+    overflow: hidden;
     position: relative;
-    height: 450px; /* Un poco más de altura */
-    background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    text-align: center;
+    height: 450px;
 }
 
-.hero-section::before {
-    content: '';
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); /* Un poco más oscuro */
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+main {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos para la sección principal */
+.hero-section {
+    position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 140px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://img.freepik.com/foto-gratis/comida-italiana-tradicional-dia-mundial-turismo_23-2149114038.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center/cover;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
+    max-width: 850px;
+    margin: 0 auto;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-title {
-    font-size: 2.8rem;
+    font-size: 4rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .hero-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.search-container input {
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+}
+
+.search-container input::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.search-btn {
+    padding: 1rem 2.5rem;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.reserve-btn, .menu-btn {
+    padding: 1.2rem 3.5rem;
+    border: none;
+    border-radius: 8px;
     font-size: 1.3rem;
-    margin-bottom: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .reserve-btn {
-    padding: 15px 35px;
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #16a085;
+    color: #fff;
 }
 
 .reserve-btn:hover {
-    background-color: #ffffff;
-    color: var(--primary-color);
+    background-color: #1abc9c;
+    transform: scale(1.05);
+}
+
+.menu-btn {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.menu-btn:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
 }
 
 .features-section {
-    padding: 60px 30px;
+    background-color: #ecf0f1;
+    padding: 6rem 2rem;
     text-align: center;
-    background-color: var(--main-bg-color);
 }
 
 .features-section h3 {
-    font-size: 2rem;
-    margin-bottom: 50px;
-    color: var(--text-color-dark);
-    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    color: #2c3e50;
 }
 
 .feature-list {
     display: flex;
-    flex-direction: column; /* Cambiado a columna */
-    align-items: center; /* Centrar items */
-    gap: 40px; /* Espacio entre items */
-    max-width: 800px;
-    margin: 0 auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3rem;
 }
 
 .feature-item {
-    /* Se eliminan los estilos de tarjeta (fondo, borde, sombra) */
-    max-width: 400px; /* Ancho máximo para el texto */
+    max-width: 320px;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .feature-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 
 .feature-item h4 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--text-color-dark);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #34495e;
 }
 
 .feature-item p {
-    font-size: 1rem;
     color: #555;
+    font-size: 1.05rem;
     line-height: 1.6;
 }

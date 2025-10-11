@@ -1,70 +1,103 @@
-/* Estilos globales para la aplicación */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* You can add global styles to this file, and also import other style files */
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "./app/app/globales.css";
 
-/* Variables de color */
-:root {
-    --primary-color: #2c3e50; /* Azul oscuro/gris para header y footer */
-    --secondary-color: #3498db; /* Azul para botones y enlaces */
-    --text-color-light: #ecf0f1; /* Texto claro para fondos oscuros */
-    --text-color-dark: #2c3e50; /* Texto oscuro para fondos claros */
-    --main-bg-color: #ffffff; /* Fondo principal blanco */
-    --footer-bg-color: #2c3e50; /* Fondo del footer */
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background-color: var(--main-bg-color);
-    color: var(--text-color-dark);
-}
-
-/* Estilos del Header */
+/* Estilos globales para el Header */
 .header {
-    background-color: var(--primary-color);
-    padding: 15px 30px;
-    color: var(--text-color-light);
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    color: #fff;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin: 0;
+    letter-spacing: 1.5px;
+    color: #ecf0f1; /* Color blanco explícito para el logo */
 }
 
 .main-nav ul {
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style-type: none;
     display: flex;
-    gap: 20px;
+    gap: 2.5rem;
 }
 
-.nav-item {
-    color: var(--text-color-light);
+.main-nav a.nav-item {
+    color: #ecf0f1; /* Color blanco para el texto */
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
-
-.nav-item:hover {
-    color: var(--secondary-color);
-}
-
-/* Estilos del Footer */
-.footer {
-    background-color: var(--footer-bg-color);
-    color: var(--text-color-light);
-    text-align: center;
-    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
-    bottom: 0;
+}
+
+.main-nav a.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #f39c12;
+    transition: width 0.3s ease;
+}
+
+.main-nav a.nav-item:hover {
+    color: #f39c12;
+    transform: translateY(-3px);
+}
+
+.main-nav a.nav-item:hover::after {
     width: 100%;
+}
+
+/* Estilos globales para el Footer */
+.footer {
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    color: #ecf0f1;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1rem;
+}
+
+/* Estilos responsivos para el Header */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center; /* Centrar logo y nav */
+        gap: 1rem; /* Espacio entre logo y nav */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center; /* Centrar items del menú */
+        gap: 1.5rem; /* Espacio entre items del menú */
+        width: 100%;
+        padding-top: 1rem; /* Espacio arriba del menú */
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .main-nav a.nav-item {
+        font-size: 1.2rem; /* Aumentar tamaño para mejor legibilidad */
+    }
 }
