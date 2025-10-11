@@ -51,4 +51,15 @@ export class AuthService {
   getUserName(): string | null {
     return localStorage.getItem('user_name');
   }
+
+  /**
+   * Envía una solicitud al backend para iniciar el proceso de recuperación de contraseña.
+   * @param email El correo electrónico del usuario que solicita la recuperación.
+   * @returns Un Observable que emite la respuesta del servidor.
+   */
+  solicitarRecuperacion(email: string): Observable<any> {
+    // CORREGIDO: El nombre de la acción ahora coincide con el backend
+    const endpoint = `${this.apiUrl}/auth.php?action=solicitar_recuperacion`;
+    return this.http.post(endpoint, { email });
+  }
 }

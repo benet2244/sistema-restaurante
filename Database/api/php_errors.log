@@ -1,0 +1,332 @@
+[07-Oct-2025 05:58:46 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'restaurante_db.schedule_times' doesn't exist in C:\xampp\htdocs\api\reservas.php:239
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(239): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 239
+[07-Oct-2025 06:07:39 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\api/../ap): Failed to open stream: No such file or directory in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:07:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\api/../ap' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\api\reservas.php:49
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:07:53 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\api/../ap): Failed to open stream: No such file or directory in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:07:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\api/../ap' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\api\reservas.php:49
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:10:12 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\api/../Database/database): Failed to open stream: No such file or directory in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:10:12 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\api/../Database/database' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\api\reservas.php:49
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:10:17 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\api/../Database/database): Failed to open stream: No such file or directory in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:10:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\api/../Database/database' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\api\reservas.php:49
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 49
+[07-Oct-2025 06:13:27 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'restaurante_db.tables' doesn't exist in C:\xampp\htdocs\api\reservas.php:239
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(239): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 239
+[07-Oct-2025 06:15:08 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'restaurante_db.tables' doesn't exist in C:\xampp\htdocs\api\reservas.php:249
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(249): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 249
+[07-Oct-2025 06:15:17 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 226
+[07-Oct-2025 06:15:17 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 31
+[07-Oct-2025 06:18:01 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'restaurante_db.tables' doesn't exist in C:\xampp\htdocs\api\reservas.php:249
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(249): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 249
+[07-Oct-2025 06:18:14 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'restaurante_db.tables' doesn't exist in C:\xampp\htdocs\api\reservas.php:249
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(249): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 249
+[07-Oct-2025 06:18:28 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 226
+[07-Oct-2025 06:18:28 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 31
+[07-Oct-2025 07:09:58 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 226
+[07-Oct-2025 07:09:58 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 31
+[07-Oct-2025 07:10:46 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 31
+[07-Oct-2025 08:29:56 Europe/Berlin] PHP Warning:  Undefined property: mysqli::$in_transaction in C:\xampp\htdocs\api\reservas.php on line 31
+[07-Oct-2025 08:41:59 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'st.time_value' in 'field list' in C:\xampp\htdocs\api\reservas.php:242
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(242): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 242
+[07-Oct-2025 10:11:08 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [comensales] => 2
+    [hora] => 22:00
+    [fecha] => 2025-10-08
+    [nombre_cliente] => 
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 10:14:44 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 21:00
+    [fecha] => 2025-10-11
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 20:05:13 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 2 in C:\xampp\htdocs\api\reservas.php:253
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(253): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 253
+[07-Oct-2025 20:05:28 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 22:00
+    [fecha] => 2025-10-09
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 20:05:28 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 2 in C:\xampp\htdocs\api\reservas.php:253
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(253): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 253
+[07-Oct-2025 20:06:40 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 2 in C:\xampp\htdocs\api\reservas.php:253
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(253): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 253
+[07-Oct-2025 20:06:55 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 2 in C:\xampp\htdocs\api\reservas.php:253
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(253): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 253
+[07-Oct-2025 20:09:25 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 1 in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:09:26 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cliente
+            FROM reservations r 
+            JOIN time_slots ts ON ...' at line 1 in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:10:22 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'r.first_name' in 'field list' in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:10:22 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'r.first_name' in 'field list' in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:10:40 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'r.first_name' in 'field list' in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:10:50 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 15:00
+    [fecha] => 2025-10-11
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 20:10:50 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'r.first_name' in 'field list' in C:\xampp\htdocs\api\reservas.php:252
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas.php(252): mysqli->prepare('SELECT r.id, r....')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas.php on line 252
+[07-Oct-2025 20:11:54 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 20:00
+    [fecha] => 2025-10-08
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 20:28:38 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 20:00
+    [fecha] => 2025-10-08
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 21:28:58 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 21:00
+    [fecha] => 2025-10-07
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 21:29:36 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 21:00
+    [fecha] => 2025-10-08
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[07-Oct-2025 21:34:32 Europe/Berlin] DEBUG UPDATE: Mesa ID: 3, Time ID: 7, Fecha: 2025-10-08, Comensales: 2, Status: confirmed, Reserva ID: 8, User ID: 6
+[07-Oct-2025 21:34:45 Europe/Berlin] DEBUG UPDATE: Mesa ID: 3, Time ID: 6, Fecha: 2025-10-08, Comensales: 2, Status: confirmed, Reserva ID: 8, User ID: 6
+[07-Oct-2025 22:19:09 Europe/Berlin] Datos POST de reserva recibidos: Array
+(
+    [user_id] => 6
+    [mesa_id] => 3
+    [hora] => 21:00
+    [fecha] => 2025-10-07
+    [comensales] => 2
+    [reservation_status] => confirmed
+)
+
+[08-Oct-2025 02:37:52 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:37:54 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:39:23 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:39:23 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:39:58 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:39:58 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:42:11 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:42:12 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:42:15 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:42:15 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:44:03 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 02:44:03 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'x
+        JOIN users u ON r.user_id = u.id 
+        WHERE r.reservation_dat...' at line 11 in C:\xampp\htdocs\api\reservas_hoy.php:87
+Stack trace:
+#0 C:\xampp\htdocs\api\reservas_hoy.php(87): mysqli->prepare('SELECT \r\n      ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\api\reservas_hoy.php on line 87
+[08-Oct-2025 04:53:44 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 04:53:44 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 04:53:49 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 04:53:49 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 04:53:50 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 04:53:50 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 04:57:09 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 04:57:09 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 04:57:28 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 04:57:28 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 07:17:52 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 07:17:52 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
+[08-Oct-2025 07:17:54 Europe/Berlin] DEBUG GET SQL: SELECT r.id, r.reservation_date as fecha, ts.start_time as horario, t.label as mesa, t.zone as zona, r.party_size as personas, r.reservation_status as estado, u.first_name as nombre_cliente, u.last_name as apellido_cliente FROM reservations r 
+                  JOIN time_slots ts ON r.time_id = ts.id 
+                  JOIN restaurants_table t ON r.table_id = t.id 
+                  JOIN users u on r.user_id = u.id  ORDER BY r.reservation_date DESC, ts.start_time ASC
+[08-Oct-2025 07:17:54 Europe/Berlin] DEBUG: Se encontraron 9 reservas.
