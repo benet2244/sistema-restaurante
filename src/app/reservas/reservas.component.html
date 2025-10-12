@@ -75,19 +75,21 @@
     </div>
   </div>
 </div>
+
 <div class="reservas-container">
   <h1 class="page-title">Gestión de Reservas</h1>
+  
   <!-- Sección de Filtros -->
   <div class="section-box">
     <h2 class="section-header">Filtros y Acciones</h2>
     <div class="reservations-filters">
       <div class="filter-group">
         <label for="filter-date">Fecha</label>
-        <input id="filter-date" type="date" class="filter-input" [(ngModel)]="filterDate" (change)="applyFilters()" >
+        <input id="filter-date" type="date" class="filter-input" [(ngModel)]="filterDate" (change)="applyFilters()">
       </div>
       <div class="filter-group">
         <label for="filter-status">Estado</label>
-        <select id="filter-status" class="filter-input" [(ngModel)]="filterStatus" (change)="applyFilters()" >
+        <select id="filter-status" class="filter-input" [(ngModel)]="filterStatus" (change)="applyFilters()">
           <option value="">Todos</option>
           <option value="confirmed">Confirmado</option>
           <option value="pending">Pendiente</option>
@@ -98,18 +100,48 @@
       <button class="btn-primary add-reservation-btn" (click)="onEdit(null)">Nueva Reserva</button>
     </div>
   </div>
+
   <!-- Sección de la Tabla de Reservas -->
   <div class="section-box reservations-table-full">
     <h2 class="section-header">Listado Completo de Reservas</h2>
-    <!-- Mensaje de Carga -->
-    <div *ngIf="isLoading" class="loading-message">
-      Cargando reservas, por favor espere...
-    </div>
-    <!-- Mensaje de Tabla vacía (después de cargar y/o aplicar filtros) -->
+    
+    <div *ngIf="isLoading" class="loading-message">Cargando reservas...</div>
     <div *ngIf="!isLoading && reservasFiltradas().length === 0" class="empty-message">
-      No se encontraron reservas que coincidan con los filtros aplicados.
+      No se encontraron reservas con los filtros actuales.
     </div>
+
     <div *ngIf="!isLoading && reservasFiltradas().length > 0" class="overflow-x-auto">
       <table class="table">
         <thead class="table-head">
-          <tr class="head-row">
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha y Hora</th>
+            <th>Mesa y Zona</th>
+            <th>Personas</th>
+            <th>Estado</th>
+            <th>Acciones</th> <!-- Nueva columna para acciones -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reservasFiltradas()">
+            <td>{{ reserva.id }}</td>
+            <td>{{ reserva.nombre_cliente }} {{ reserva.apellido_cliente }}</td>
+            <td>{{ reserva.fecha }} a las {{ reserva.horario }}</td>
+            <td>{{ reserva.mesa }} ({{ reserva.zona }})</td>
+            <td>{{ reserva.personas }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(reserva.estado)">
+                {{ reserva.estado | titlecase }}
+              </span>
+            </td>
+            <td>
+              <!-- BOTÓN DE EDITAR AÑADIDO -->
+              <button class="btn-edit" (click)="onEdit(reserva)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

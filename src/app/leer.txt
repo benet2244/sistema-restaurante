@@ -3,3 +3,31 @@ el archivo que dice gloables.css es el css que va fuera de los componentes, en e
 
 
 cualquier dura o algo que haga falta me podes decir 
+
+
+se realizaron cambio en el data-service.ts
+**se creo un nuevo php llamado mesas-disponibles.php para virusalizar las mesas que estan disponibles
+se actualizo el componete de cliente, 
+
+se creo
+**se creo un php para la configuracion de la informacion que se reflejara en la itnerfas 
+de cliente
+
+este es el databde de configuracion:
+
+*** CREATE TABLE configuracion (
+  id INT PRIMARY KEY DEFAULT 1,
+  nombre VARCHAR(255) NOT NULL DEFAULT 'Nombre de tu Restaurante',
+  direccion VARCHAR(255),
+  telefono VARCHAR(50),
+  horario_apertura TIME,
+  horario_cierre TIME
+);
+
+-- Inserta la primera fila de configuración para que el sistema pueda leerla
+INSERT INTO configuracion (id, nombre, direccion, telefono, horario_apertura, horario_cierre) 
+VALUES (1, 'El Buen Sabor', 'Calle Falsa, 123', '+34 912 345 678', '13:00:00', '23:00:00');
+
+
+
+** se actualizo mesas.php

@@ -3,33 +3,35 @@
 <div class="management-container">
   <!-- Botón para mostrar/ocultar el formulario -->
   <div class="header-actions">
-    <button class="btn-primary" (click)="toggleFormulario()">
+    <button class="btn-primary" (click)="mostrarFormulario ? cancelarFormulario() : prepararNuevo()">
       {{ mostrarFormulario ? 'Cancelar' : 'Añadir Nueva Mesa' }}
     </button>
   </div>
 
-  <!-- Formulario embebido -->
+  <!-- Formulario embebido para Crear o Editar -->
   <div *ngIf="mostrarFormulario" class="form-section">
-    <h2>Agregar Nueva Mesa</h2>
+    <h2>{{ esModoEdicion ? 'Editar Mesa' : 'Agregar Nueva Mesa' }}</h2>
     <form (ngSubmit)="guardarMesa()" #mesaForm="ngForm">
+      
+      <!-- Campos del formulario bindeados a 'mesaActual' -->
       <label>
         Nombre:
-        <input type="text" name="label" [(ngModel)]="nuevaMesa.label" required class="form-input" />
+        <input type="text" name="label" [(ngModel)]="mesaActual.label" required class="form-input" />
       </label>
 
       <label>
         Zona:
-        <input type="text" name="zone" [(ngModel)]="nuevaMesa.zone" required class="form-input" />
+        <input type="text" name="zone" [(ngModel)]="mesaActual.zone" required class="form-input" />
       </label>
 
       <label>
         Capacidad:
-        <input type="number" name="capacity" [(ngModel)]="nuevaMesa.capacity" required min="1" class="form-input" />
+        <input type="number" name="capacity" [(ngModel)]="mesaActual.capacity" required min="1" class="form-input" />
       </label>
 
       <label>
         Estado:
-        <select name="table_status" [(ngModel)]="nuevaMesa.table_status" required class="form-input">
+        <select name="table_status" [(ngModel)]="mesaActual.table_status" required class="form-input">
           <option value="available">Disponible</option>
           <option value="occupied">Ocupada</option>
           <option value="reserved">Reservada</option>
@@ -39,11 +41,11 @@
 
       <label>
         Notas:
-        <textarea name="notes" [(ngModel)]="nuevaMesa.notes" class="form-input"></textarea>
+        <textarea name="notes" [(ngModel)]="mesaActual.notes" class="form-input"></textarea>
       </label>
 
       <div class="form-actions">
-        <button type="submit" class="btn-primary">Guardar</button>
+        <button type="submit" class="btn-primary" [disabled]="!mesaForm.valid">{{ esModoEdicion ? 'Guardar Cambios' : 'Crear Mesa' }}</button>
       </div>
     </form>
   </div>
@@ -73,7 +75,8 @@
               </span>
             </td>
             <td class="actions">
-              <button class="action-btn edit" (click)="editarMesa(mesa)">Editar</button>
+              <!-- LLamada a la función corregida 'prepararEditar' -->
+              <button class="action-btn edit" (click)="prepararEditar(mesa)">Editar</button>
               <button class="action-btn cancel" (click)="eliminarMesa(mesa.id)">Eliminar</button>
             </td>
           </tr>

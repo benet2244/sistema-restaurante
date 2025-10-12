@@ -1,5 +1,5 @@
 <?php
-require_once('../Database/database.php'); // ¡Debe definir $conn con la configuración SSL de Aiven!
+require_once('../Database/database.php');
 
 // CORS & headers básicos
 header("Access-Control-Allow-Origin: *");
@@ -14,8 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $method = $_SERVER['REQUEST_METHOD'];
-$path = explode('/', $_SERVER['REQUEST_URI']);
-$id = is_numeric(end($path)) ? (int)end($path) : null;
+
+// --- OBTENCIÓN DEL ID ---
+// Se prioriza el parámetro 'id' de la query string, que es lo que usa el frontend de Angular.
+$id = null;
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = (int)$_GET['id'];
+} else {
+    // Se mantiene el soporte para IDs en la ruta por si se usa en otro lugar.
+    $path = explode('/', $_SERVER['REQUEST_URI']);
+    if (is_numeric(end($path))) {
+        $id = (int)end($path);
+    }
+}
 
 // Funciones de ejemplo (mantener o reemplazar por tu lógica real de autenticación)
 function checkAuth() { return true; }
@@ -40,7 +51,6 @@ switch ($method) {
     case 'GET':
         $tableCols = "id, zone, capacity, table_status, label, notes";
         if ($id) {
-            // GET por ID (ya es seguro con sentencia preparada)
             $stmt = $conn->prepare("SELECT $tableCols FROM restaurants_table WHERE id = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
@@ -56,34 +66,23 @@ switch ($method) {
                 echo json_encode(["success" => false, "message" => "Mesa no encontrada."]);
             }
         } else {
-            // GET ALL (Mejora: Usar sentencia preparada aunque no tenga parámetros para mayor consistencia)
             $stmt = $conn->prepare("SELECT $tableCols FROM restaurants_table ORDER BY id");
             $stmt->execute();
             $result = $stmt->get_result();
-            
             $mesas = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
-            
-            $stmt->close(); // Cerrar el statement
+            $stmt->close();
             http_response_code(200);
             echo json_encode(["success" => true, "data" => $mesas]);
         }
         break;
 
     case 'POST':
-        // Lógica de POST: Ya usa sentencia preparada y es segura.
-        // ... (Tu código existente para POST) ...
-        if (!isAdmin()) { /* ... (error code 403) ... */ break; }
+        if (!isAdmin()) { http_response_code(403); echo json_encode(["success" => false, "message" => "Permisos insuficientes."]); break; }
         $data = json_decode(file_get_contents("php://input"), true);
-        if (!isset($data['capacity'], $data['zone'], $data['label'])) { /* ... (error code 400) ... */ break; }
-
-        $zone = $data['zone'];
-        $capacity = (int)$data['capacity'];
-        $table_status = $data['table_status'] ?? 'available';
-        $notes = $data['notes'] ?? '';
-        $label = $data['label'];
+        if (!isset($data['capacity'], $data['zone'], $data['label'])) { http_response_code(400); echo json_encode(["success" => false, "message" => "Datos incompletos."]); break; }
 
         $stmt = $conn->prepare("INSERT INTO restaurants_table (zone, capacity, table_status, notes, label) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sisss", $zone, $capacity, $table_status, $notes, $label);
+        $stmt->bind_param("sisss", $data['zone'], $data['capacity'], $data['table_status'], $data['notes'], $data['label']);
 
         if ($stmt->execute()) {
             http_response_code(201);
@@ -96,37 +95,29 @@ switch ($method) {
         break;
 
     case 'PUT':
-        // Lógica de PUT: Ya usa sentencia preparada y es segura.
-        // ... (Tu código existente para PUT) ...
-        if (!isAdmin()) { /* ... (error code 403) ... */ break; }
         $data = json_decode(file_get_contents("php://input"), true);
-        if (!$id || empty($data)) { /* ... (error code 400) ... */ break; }
-
-        $zone = $data['zone'] ?? null;
-        $capacity = $data['capacity'] ?? null;
-        $table_status = $data['table_status'] ?? null;
-        $notes = $data['notes'] ?? null;
-        $label = $data['label'] ?? null;
+        if (!$id || empty($data)) { http_response_code(400); echo json_encode(["success" => false, "message" => "ID de mesa no especificado o datos vacíos."]); break; }
+        if (!isAdmin()) { http_response_code(403); echo json_encode(["success" => false, "message" => "Permisos insuficientes."]); break; }
 
         $fields = [];
         $types = "";
         $values = [];
 
-        if ($zone !== null) { $fields[] = "zone = ?"; $types .= "s"; $values[] = $zone; }
-        if ($capacity !== null) { $fields[] = "capacity = ?"; $types .= "i"; $values[] = $capacity; }
-        if ($table_status !== null) { $fields[] = "table_status = ?"; $types .= "s"; $values[] = $table_status; }
-        if ($notes !== null) { $fields[] = "notes = ?"; $types .= "s"; $values[] = $notes; }
-        if ($label !== null) { $fields[] = "label = ?"; $types .= "s"; $values[] = $label; }
+        // Construcción dinámica de la consulta
+        if (isset($data['zone'])) { $fields[] = "zone = ?"; $types .= "s"; $values[] = $data['zone']; }
+        if (isset($data['capacity'])) { $fields[] = "capacity = ?"; $types .= "i"; $values[] = $data['capacity']; }
+        if (isset($data['table_status'])) { $fields[] = "table_status = ?"; $types .= "s"; $values[] = $data['table_status']; }
+        if (isset($data['notes'])) { $fields[] = "notes = ?"; $types .= "s"; $values[] = $data['notes']; }
+        if (isset($data['label'])) { $fields[] = "label = ?"; $types .= "s"; $values[] = $data['label']; }
 
-        if (empty($fields)) { /* ... (error code 400) ... */ break; }
+        if (empty($fields)) { http_response_code(400); echo json_encode(["success" => false, "message" => "No hay campos para actualizar."]); break; }
 
         $sql = "UPDATE restaurants_table SET " . implode(", ", $fields) . " WHERE id = ?";
         $types .= "i";
         $values[] = $id;
 
         $stmt = $conn->prepare($sql);
-        // El uso de `...$values` para bind_param es excelente
-        $stmt->bind_param($types, ...$values); 
+        $stmt->bind_param($types, ...$values);
 
         if ($stmt->execute()) {
             http_response_code(200);
@@ -139,10 +130,8 @@ switch ($method) {
         break;
 
     case 'DELETE':
-        // Lógica de DELETE: Ya usa sentencia preparada y es segura.
-        // ... (Tu código existente para DELETE) ...
-        if (!isAdmin()) { /* ... (error code 403) ... */ break; }
-        if (!$id) { /* ... (error code 400) ... */ break; }
+        if (!$id) { http_response_code(400); echo json_encode(["success" => false, "message" => "ID de mesa no especificado."]); break; }
+        if (!isAdmin()) { http_response_code(403); echo json_encode(["success" => false, "message" => "Permisos insuficientes."]); break; }
 
         $stmt = $conn->prepare("DELETE FROM restaurants_table WHERE id = ?");
         $stmt->bind_param("i", $id);

@@ -125,6 +125,18 @@ export class ReservasComponent implements OnInit {
     this.loadAllReservations();
   }
 
+  // ========= FUNCIÓN AÑADIDA PARA CORREGIR EL ERROR =========
+  getStatusClass(status: string): string {
+    if (!status) return 'pending';
+    const s = status.toLowerCase().trim();
+    switch (s) {
+      case 'confirmed': return 'confirmed';
+      case 'pending': return 'pending';
+      case 'cancelled': return 'cancelled';
+      default: return 'pending';
+    }
+  }
+
   getStatusInfo(status: string): { text: string, class: string } {
     const s = status.toLowerCase().trim();
     switch (s) {
@@ -147,13 +159,13 @@ export class ReservasComponent implements OnInit {
           id: reserva.id,
           nombre_cliente: reserva.nombre_cliente,
           apellido_cliente: reserva.apellido_cliente,
-          phone: '',
+          phone: '', // Asumiendo que el teléfono no viene en ReservaGeneral
           fecha: reserva.fecha,
           horario: reserva.horario,
           mesa: reserva.mesa,
           personas: reserva.personas,
           estado: reserva.estado,
-          user_id: 1,
+          user_id: 1, // Estos valores deberían venir de la reserva si existen
           table_id: 1,
           time_id: 1
         }
@@ -161,28 +173,17 @@ export class ReservasComponent implements OnInit {
 
     this.service.obtenerHorariosDisponibles(this.reservaForm.fecha).subscribe({
       next: (horarios: string[]) => {
-        this.horariosDisponibles = horarios.map((hora, index) => ({
-          id: index + 1,
-          hora
-        }));
+        this.horariosDisponibles = horarios.map((hora, index) => ({ id: index + 1, hora }));
       },
-      error: () => {
-        this.horariosDisponibles = [];
-      }
+      error: () => { this.horariosDisponibles = []; }
     });
 
     this.service.getTables().subscribe({
       next: (response: any) => {
         const mesas = Array.isArray(response) ? response : response.data;
-        this.mesasDisponibles = mesas.map((mesa: any) => ({
-          id: mesa.id,
-          label: mesa.label,
-          zone: mesa.zone
-        }));
+        this.mesasDisponibles = mesas.map((mesa: any) => ({ id: mesa.id, label: mesa.label, zone: mesa.zone }));
       },
-      error: () => {
-        this.mesasDisponibles = [];
-      }
+      error: () => { this.mesasDisponibles = []; }
     });
 
     this.showEditModal.set(true);

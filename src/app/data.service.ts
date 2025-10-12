@@ -1,79 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-// ----------------------------------------------------
-// INTERFACES DE MESAS
-// ----------------------------------------------------
+// ... (otras interfaces) ...
 
-export interface Mesa {
-  id: number;
-  label: string;
-  zone: string;
-  capacity: number;
-  table_status: 'available' | 'reserved' | 'maintenance' | 'occupied' | string;
-  notes: string;
+// INTERFAZ PARA LA CONFIGURACIÓN DEL RESTAURANTE
+export interface RestauranteConfig {
+  id?: number;
+  nombre?: string;
+  direccion?: string;
+  telefono?: string;
+  horario_apertura?: string;
+  horario_cierre?: string;
+  [key: string]: any; // Para flexibilidad
 }
-
-export interface ApiResponse {
-  success: boolean;
-  data: Mesa[];
-  message?: string;
-}
-
-// ----------------------------------------------------
-// INTERFACES DEL DASHBOARD Y RESERVAS HOY
-// ----------------------------------------------------
-
-export interface DailyStatsResponse {
-  success: boolean;
-  message?: string;
-  stats: {
-    reservas_hoy: number;
-    mesas_totales: number;
-    mesas_ocupadas: number;
-    mesas_disponibles: number;
-    reservas_pendientes: number;
-    ocupacion_porcentaje: number;
-  };
-}
-
-export interface ReservaDia {
-  id: number;
-  personas: number;
-  estado: string;
-  nombre_cliente: string;
-  apellido_cliente: string;
-  mesa: string;
-  hora_reserva: string;
-}
-
-export interface TodayReservationsResponse {
-  success: boolean;
-  message?: string;
-  data: ReservaDia[];
-}
-
-// ----------------------------------------------------
-// INTERFAZ DE RESERVAS GENERALES
-// ----------------------------------------------------
-
-export interface ReservaGeneral {
-  id: number;
-  nombre_cliente: string;
-  apellido_cliente: string;
-  fecha: string;
-  horario: string;
-  mesa: string;
-  zona: string;
-  personas: number;
-  estado: 'confirmed' | 'pending' | 'cancelled' | string;
-}
-
-// ----------------------------------------------------
-// SERVICIO PRINCIPAL
-// ----------------------------------------------------
 
 @Injectable({ providedIn: 'root' })
 export class ServiceRestaurant {
@@ -85,13 +26,36 @@ export class ServiceRestaurant {
 
   constructor(private http: HttpClient) {}
 
-  // ------------------ MESAS ------------------
+  // ========================================================================
+  // MÉTODOS PARA LA CONFIGURACIÓN DEL RESTAURANTE
+  // ========================================================================
 
-  getTables(): Observable<ApiResponse> {
-    const endpoint = `${this.apiUrl}/mesas.php`;
-    return this.http.get<ApiResponse>(endpoint).pipe(catchError(this.handleError));
+  obtenerConfiguracionRestaurante(): Observable<RestauranteConfig> {
+    const endpoint = `${this.apiUrl}/configuracion.php`;
+    return this.http.get<RestauranteConfig>(endpoint).pipe(catchError(this.handleError));
   }
 
+  actualizarConfiguracionRestaurante(config: RestauranteConfig): Observable<any> {
+    const endpoint = `${this.apiUrl}/configuracion.php`;
+    return this.http.put<any>(endpoint, config, { headers: this.headers }).pipe(catchError(this.handleError));
+  }
+
+  // ... (resto de los métodos existentes) ...
+  getTables(): Observable<any> {
+    const endpoint = `${this.apiUrl}/mesas.php`;
+    return this.http.get<any>(endpoint).pipe(catchError(this.handleError));
+  }
+
+  obtenerMesasDisponibles(filtros: { fecha: string; horario: string; personas: number; zona: string }): Observable<Mesa[]> {
+    const endpoint = `${this.apiUrl}/mesas_disponibles.php`;
+    const params = new HttpParams()
+      .set('fecha', filtros.fecha)
+      .set('horario', filtros.horario)
+      .set('personas', filtros.personas.toString())
+      .set('zona', filtros.zona);
+    return this.http.get<Mesa[]>(endpoint, { params }).pipe(catchError(this.handleError));
+  }
+  
   getTableById(id: number): Observable<any> {
     const endpoint = `${this.apiUrl}/mesas.php/${id}`;
     return this.http.get<any>(endpoint).pipe(catchError(this.handleError));
@@ -102,19 +66,20 @@ export class ServiceRestaurant {
     return this.http.post<any>(endpoint, nuevaMesa, { headers: this.headers }).pipe(catchError(this.handleError));
   }
 
+  updateTable(mesa: Partial<Mesa>): Observable<any> {
+    const endpoint = `${this.apiUrl}/mesas.php?id=${mesa.id}`;
+    return this.http.put<any>(endpoint, mesa, { headers: this.headers }).pipe(catchError(this.handleError));
+  }
+
   deleteTable(id: number): Observable<any> {
     const endpoint = `${this.apiUrl}/mesas.php?id=${id}`;
     return this.http.delete<any>(endpoint, { headers: this.headers }).pipe(catchError(this.handleError));
   }
 
-  // ------------------ DASHBOARD ------------------
-
   getDailyStats(): Observable<DailyStatsResponse> {
     const endpoint = `${this.apiUrl}/stats.php`;
     return this.http.get<DailyStatsResponse>(endpoint).pipe(catchError(this.handleError));
   }
-
-  // ------------------ RESERVAS ------------------
 
   getTodayReservations(): Observable<TodayReservationsResponse> {
     const endpoint = `${this.apiUrl}/reservas_hoy.php`;
@@ -167,14 +132,10 @@ export class ServiceRestaurant {
     return this.http.get<any[]>(endpoint).pipe(catchError(this.handleError));
   }
 
-  // ------------------ USUARIOS ------------------
-
   registerUser(newUser: any): Observable<any> {
     const endpoint = `${this.apiUrl}/auth.php?action=register`;
     return this.http.post<any>(endpoint, newUser).pipe(catchError(this.handleError));
   }
-
-  // ------------------ ERRORES ------------------
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Ocurrió un error desconocido en ServiceRestaurant';
@@ -187,3 +148,10 @@ export class ServiceRestaurant {
     return throwError(() => new Error(errorMessage));
   }
 }
+// Asegúrate de que las demás interfaces (Mesa, ApiResponse, etc.) estén definidas aquí o importadas.
+export interface Mesa { id: number; label: string; zone: string; capacity: number; table_status: string; notes: string; }
+export interface ApiResponse { success: boolean; data: Mesa[]; message?: string; }
+export interface DailyStatsResponse { success: boolean; message?: string; stats: any; }
+export interface ReservaDia { id: number; personas: number; estado: string; nombre_cliente: string; apellido_cliente: string; mesa: string; hora_reserva: string; }
+export interface TodayReservationsResponse { success: boolean; message?: string; data: ReservaDia[]; }
+export interface ReservaGeneral { id: number; nombre_cliente: string; apellido_cliente: string; fecha: string; horario: string; mesa: string; zona: string; personas: number; estado: string; }

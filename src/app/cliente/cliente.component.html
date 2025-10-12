@@ -1,7 +1,7 @@
 <div class="client-panel-wrapper">
 
   <header class="client-panel-header">
-    <h1 class="main-title">Panel del Cliente</h1>
+    <h1 class="main-title">{{ infoRestaurante.nombre || 'Panel del Cliente' }}</h1>
     <button class="logout-btn" (click)="logout()">Cerrar sesión</button>
   </header>
 
@@ -16,135 +16,76 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="res-date">Fecha</label>
-                <input
-                  type="date"
-                  id="res-date"
-                  class="form-control"
-                  name="fecha"
-                  [(ngModel)]="nuevaReserva.fecha"
-                  (change)="onFechaChange()"
-                  required
-                />
+                <input type="date" id="res-date" class="form-control" name="fecha" [(ngModel)]="nuevaReserva.fecha" (change)="onFechaChange()" required />
               </div>
-
               <div class="form-group">
                 <label for="res-time">Horario</label>
-                <select
-                  id="res-time"
-                  class="form-control"
-                  name="horario"
-                  [(ngModel)]="nuevaReserva.horario"
-                  required
-                >
-                  <option value="" disabled [selected]="!nuevaReserva.horario">
-                    {{ nuevaReserva.fecha ? 'Selecciona un horario' : 'Selecciona una fecha primero' }}
-                  </option>
-                  <option *ngFor="let horario of horariosDisponibles" [value]="horario">
-                    {{ horario }}
-                  </option>
+                <select id="res-time" class="form-control" name="horario" [(ngModel)]="nuevaReserva.horario" required>
+                  <option value="" disabled [selected]="!nuevaReserva.horario">{{ nuevaReserva.fecha ? 'Selecciona un horario' : 'Selecciona una fecha' }}</option>
+                  <option *ngFor="let horario of horariosDisponibles" [value]="horario">{{ horario }}</option>
                 </select>
               </div>
             </div>
-
             <div class="form-row">
               <div class="form-group">
                 <label for="res-people">Número de Personas</label>
-                <input
-                  type="number"
-                  id="res-people"
-                  class="form-control"
-                  name="cantidadPersonas"
-                  [(ngModel)]="nuevaReserva.cantidadPersonas"
-                  min="1"
-                  required
-                />
+                <input type="number" id="res-people" class="form-control" name="cantidadPersonas" [(ngModel)]="nuevaReserva.cantidadPersonas" min="1" required />
               </div>
-
               <div class="form-group">
                 <label for="res-zone">Zona preferida</label>
-                <select
-                  id="res-zone"
-                  class="form-control"
-                  name="zonaPreferida"
-                  [(ngModel)]="nuevaReserva.zonaPreferida"
-                  required
-                >
+                <select id="res-zone" class="form-control" name="zonaPreferida" [(ngModel)]="nuevaReserva.zonaPreferida" required>
                   <option value="" disabled selected>Selecciona una zona</option>
-                  <option *ngFor="let zona of zonasRestaurante" [value]="zona">
-                    {{ zona }}
-                  </option>
+                  <option *ngFor="let zona of zonasRestaurante" [value]="zona">{{ zona }}</option>
                 </select>
               </div>
             </div>
-
-            <button
-              type="button"
-              class="btn-submit"
-              (click)="verMesasDisponibles()"
-              [disabled]="!reservaForm.valid"
-            >
-              Ver mesas disponibles
-            </button>
+            <button type="button" class="btn-submit" (click)="verMesasDisponibles()" [disabled]="!reservaForm.valid">Ver mesas disponibles</button>
           </form>
         </div>
       </div>
 
       <!-- Card: Mesas Disponibles -->
-      <div class="card available-tables-card" *ngIf="mesasDisponibles.length > 0">
+      <div class="card available-tables-card" *ngIf="mesasDisponibles.length > 0 && !reservaAEditar">
         <h2 class="card-header">Mesas Disponibles</h2>
         <div class="card-body">
           <ul class="available-table-list">
-            <li
-              *ngFor="let mesa of mesasDisponibles"
-              (click)="mesaSeleccionada = mesa"
-              [ngClass]="{ 'selected': mesaSeleccionada?.id === mesa.id }"
-              style="cursor: pointer;"
-            >
+            <li *ngFor="let mesa of mesasDisponibles" (click)="mesaSeleccionada = mesa" [ngClass]="{ 'selected': mesaSeleccionada?.id === mesa.id }">
               <strong>{{ mesa.label }}</strong> — Capacidad: {{ mesa.capacity }} personas
               <span class="zone-info">({{ mesa.zone }})</span>
             </li>
           </ul>
-
-          <!-- Botón de Confirmar -->
           <div class="confirm-reservation" *ngIf="mesaSeleccionada">
-            <h3>Mesa seleccionada: {{ mesaSeleccionada.label }} ({{ mesaSeleccionada.zone }})</h3>
+            <h3>Mesa seleccionada: {{ mesaSeleccionada.label }}</h3>
             <button class="btn-confirm" (click)="confirmarReserva()">Confirmar Reserva</button>
           </div>
         </div>
       </div>
 
       <!-- Card: Mis Reservas Activas -->
-    <div class="card active-reservations-card">
-      <h2 class="card-header">Mis Reservas Activas</h2>
-      <div class="card-body">
-        <ng-container *ngIf="misReservas.length > 0; else noReservas">
-          <div
-            *ngFor="let reserva of misReservas"
-            class="reservation-item"
-            [ngClass]="reserva.statusClass || 'status-ok'"
-          >
-            <div class="res-info">
-              <strong>Reserva #{{ reserva.id }}</strong>
-              <!-- Mostrar el estado junto a la info principal -->
-              <span class="status-badge" [ngClass]="reserva.statusClass">{{ reserva.reservation_status | titlecase }}</span>
-              <span>{{ reserva.fecha }} | {{ reserva.horario }}</span>
-              <span>Mesa {{ reserva.mesa }} ({{ reserva.zona }}) - {{ reserva.personas }} personas</span>
+      <div class="card active-reservations-card">
+        <h2 class="card-header">Mis Reservas</h2>
+        <div class="card-body">
+          <ng-container *ngIf="misReservas.length > 0; else noReservas">
+            <div *ngFor="let reserva of misReservas" class="reservation-item" [ngClass]="reserva.statusClass">
+              <div class="res-info">
+                <strong>Reserva #{{ reserva.id }}</strong>
+                <span class="status-badge" [ngClass]="reserva.statusClass">{{ reserva.reservation_status | titlecase }}</span>
+                <span>{{ reserva.fecha }} | {{ reserva.horario }}</span>
+                <span>Mesa {{ reserva.mesa }} ({{ reserva.zona }}) - {{ reserva.personas }} personas</span>
+              </div>
+              <div class="res-actions">
+                <ng-container *ngIf="reserva.reservation_status === 'confirmed' || reserva.reservation_status === 'pending'">
+                  <button class="btn-modify" (click)="openModal(reserva.id)">Modificar</button>
+                  <button class="btn-cancel" (click)="cancelarReserva(reserva.id)">Cancelar</button>
+                </ng-container>
+              </div>
             </div>
-            <div class="res-actions">
-              <!-- Solo permitir modificar/cancelar si el estado es confirmado/pendiente -->
-              <ng-container *ngIf="reserva.reservation_status === 'confirmed' || reserva.reservation_status === 'pending'">
-                <!-- CAMBIO CLAVE: Llamar a openModal para abrir la ventana de edición -->
-                <button class="btn-modify" (click)="openModal(reserva.id)">Modificar</button>
-                <button class="btn-cancel" (click)="cancelarReserva(reserva.id)">Cancelar</button>
-              </ng-container>
-            </div>
-          </div>
-        </ng-container>
-        <ng-template #noReservas>
-          <p class="no-data-message">No tienes ninguna reserva activa en este momento.</p>
-        </ng-template>
+          </ng-container>
+          <ng-template #noReservas>
+            <p class="no-data-message">No tienes ninguna reserva activa.</p>
+          </ng-template>
+        </div>
       </div>
-    </div>
     </main>
 
     <aside class="sidebar">
@@ -163,127 +104,68 @@
       <div class="card restaurant-info-card">
         <h2 class="card-header">Información del Restaurante</h2>
         <div class="card-body">
-          <p><strong>Horario:</strong> 12:00 - 16:00 / 20:00 - 23:00</p>
-          <p><strong>Teléfono:</strong> +502 1234 5678</p>
-          <p><strong>Dirección:</strong> 6a Avenida 7-89, Zona 1, Ciudad de Guatemala</p>
+          <p><strong>Horario:</strong> {{ infoRestaurante.horario_apertura }} - {{ infoRestaurante.horario_cierre }}</p>
+          <p><strong>Teléfono:</strong> {{ infoRestaurante.telefono }}</p>
+          <p><strong>Dirección:</strong> {{ infoRestaurante.direccion }}</p>
         </div>
       </div>
     </aside>
   </div>
 
   <footer class="client-panel-footer">
-    <p>© 2025 Reserva de Restaurante. Todos los derechos reservados.</p>
+    <p>© 2025 {{ infoRestaurante.nombre || 'Reserva de Restaurante' }}. Todos los derechos reservados.</p>
   </footer>
 
 </div>
 
-<!-- -------------------------------------------------------------------------------- -->
 <!-- MODAL DE EDICIÓN DE RESERVA -->
-<!-- Visible si 'reservaAEditar' tiene un valor (establecido por openModal(id)) -->
-<!-- -------------------------------------------------------------------------------- -->
 <div class="modal-overlay" *ngIf="reservaAEditar">
-    <div class="modal-content">
-        
-        <div class="modal-header-wrapper">
-            <h3 class="modal-title">Modificar Reserva #{{ reservaAEditar.id }}</h3>
-            <button class="modal-close-btn" (click)="closeModal()">
-                &times;
-            </button>
-        </div>
-
-        <form class="modal-reservation-form" (ngSubmit)="confirmarReserva()">
-            
-            <!-- Campo de Fecha - No modificable en el modal, solo informativo -->
-            <div class="form-group">
-                <label for="modal-fecha">Fecha Original</label>
-                <input
-                    type="date"
-                    id="modal-fecha"
-                    class="form-control"
-                    [ngModel]="nuevaReserva.fecha"
-                    name="modalFecha"
-                    disabled
-                />
-            </div>
-            
-            <div class="form-group">
-                <label for="modal-time">Nuevo Horario</label>
-                <select
-                    id="modal-time"
-                    class="form-control"
-                    name="modalHorario"
-                    [(ngModel)]="nuevaReserva.horario"
-                    (change)="verMesasDisponibles()"
-                    required
-                >
-                    <option value="" disabled>Seleccione un horario</option>
-                    <option *ngFor="let horario of horariosDisponibles" [value]="horario">{{ horario }}</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="modal-people">Número de Personas</label>
-                <input
-                    type="number"
-                    id="modal-people"
-                    class="form-control"
-                    name="modalCantidadPersonas"
-                    [(ngModel)]="nuevaReserva.cantidadPersonas"
-                    (change)="verMesasDisponibles()"
-                    min="1"
-                    required
-                />
-            </div>
-
-            <div class="form-group">
-                <label for="modal-zone">Zona preferida</label>
-                <select
-                    id="modal-zone"
-                    class="form-control"
-                    name="modalZonaPreferida"
-                    [(ngModel)]="nuevaReserva.zonaPreferida"
-                    (change)="verMesasDisponibles()"
-                    required
-                >
-                    <option value="" disabled selected>Selecciona una zona</option>
-                    <option *ngFor="let zona of zonasRestaurante" [value]="zona">
-                        {{ zona }}
-                    </option>
-                </select>
-            </div>
-
-            <!-- Mesas Disponibles dentro del Modal (Si se cumple la condición) -->
-            <div class="available-tables-modal" *ngIf="mesasDisponibles.length > 0">
-                <h4 class="available-tables-title">Mesas Disponibles para estos cambios:</h4>
-                <ul class="available-table-list">
-                    <li
-                        *ngFor="let mesa of mesasDisponibles"
-                        (click)="mesaSeleccionada = mesa"
-                        [ngClass]="{ 'selected': mesaSeleccionada?.id === mesa.id }"
-                        style="cursor: pointer;"
-                    >
-                        <strong>{{ mesa.label }}</strong> — Capacidad: {{ mesa.capacity }} personas
-                        <span class="zone-info">({{ mesa.zone }})</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Mensaje de No Disponibilidad en el Modal -->
-            <div class="no-tables-message" 
-                 *ngIf="nuevaReserva.zonaPreferida && nuevaReserva.horario && nuevaReserva.cantidadPersonas && mesasDisponibles.length === 0">
-                No encontramos mesas disponibles con esos criterios. Intenta otra hora o zona.
-            </div>
-
-            <div class="modal-actions">
-                <button type="button" class="btn-cancel" (click)="closeModal()">Cancelar</button>
-                <button
-                    type="submit"
-                    class="btn-confirm"
-                    
-                >
-                    Guardar Cambios
-                </button>
-            </div>
-        </form>
+  <div class="modal-content">
+    <div class="modal-header-wrapper">
+      <h3 class="modal-title">Modificar Reserva #{{ reservaAEditar.id }}</h3>
+      <button class="modal-close-btn" (click)="closeModal()">&times;</button>
     </div>
+    <form class="modal-reservation-form" (ngSubmit)="confirmarReserva()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modal-date">Fecha</label>
+          <input type="date" id="modal-date" class="form-control" name="modalFecha" [(ngModel)]="nuevaReserva.fecha" (change)="onFechaChange()" required />
+        </div>
+        <div class="form-group">
+          <label for="modal-time">Horario</label>
+          <select id="modal-time" class="form-control" name="modalHorario" [(ngModel)]="nuevaReserva.horario" required>
+            <option *ngFor="let h of horariosDisponibles" [value]="h">{{ h }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modal-people">Personas</label>
+          <input type="number" id="modal-people" class="form-control" name="modalCantidadPersonas" [(ngModel)]="nuevaReserva.cantidadPersonas" min="1" required />
+        </div>
+        <div class="form-group">
+          <label for="modal-zone">Zona</label>
+          <select id="modal-zone" class="form-control" name="modalZonaPreferida" [(ngModel)]="nuevaReserva.zonaPreferida" required>
+            <option *ngFor="let z of zonasRestaurante" [value]="z">{{ z }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn-submit-modal" (click)="verMesasDisponibles()">Buscar Mesas</button>
+      <div class="available-tables-modal" *ngIf="mesasDisponibles.length > 0">
+        <h4>Selecciona una nueva mesa:</h4>
+        <ul class="available-table-list">
+          <li *ngFor="let mesa of mesasDisponibles" (click)="mesaSeleccionada = mesa" [ngClass]="{ 'selected': mesaSeleccionada?.id === mesa.id }">
+            <strong>{{ mesa.label }}</strong> (Cap: {{ mesa.capacity }}) - {{ mesa.zone }}
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="mesasDisponibles.length === 0" class="no-tables-message">
+        <p>No hay mesas disponibles con los nuevos criterios.</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button type="submit" class="btn-confirm" [disabled]="!mesaSeleccionada">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
 </div>
